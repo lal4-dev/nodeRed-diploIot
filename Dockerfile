@@ -1,4 +1,4 @@
-FROM nodered/node-red
+FROM nodered/node-red:latest
 
 EXPOSE 1880
 

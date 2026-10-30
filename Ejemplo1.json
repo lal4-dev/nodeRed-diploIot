@@ -1,0 +1,95 @@
+[
+    {
+        "id": "2b1c8977660ef1b6",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Temperatura",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "topic": "Temperatura",
+        "payload": "$floor($random() * 10 + 20)",
+        "payloadType": "jsonata",
+        "x": 280,
+        "y": 580,
+        "wires": [
+            [
+                "0ea08b8ac5a5b9b0"
+            ]
+        ]
+    },
+    {
+        "id": "0ea08b8ac5a5b9b0",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 1",
+        "func": "msg.payload = Number((20 + Math.random() * 10).toFixed(1));\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 580,
+        "wires": [
+            [
+                "bce96a1881b5b24f",
+                "18682873184036d4"
+            ]
+        ]
+    },
+    {
+        "id": "18682873184036d4",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "bce96a1881b5b24f",
+        "type": "websocket out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "server": "b869bcf435dea8bf",
+        "client": "",
+        "x": 980,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "4bb335e06d91617c",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "WebSocket",
+        "info": "https://piehost.com/websocket-tester\n\nwss://node-red-render-7p11.onrender.com/ws/temperatura",
+        "x": 970,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "b869bcf435dea8bf",
+        "type": "websocket-listener",
+        "path": "/ws/temperatura",
+        "wholemsg": "false"
+    }
+]
